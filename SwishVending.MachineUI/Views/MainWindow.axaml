@@ -1,0 +1,106 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SwishVending.MachineUI.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        x:Class="SwishVending.MachineUI.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="SwishVending.MachineUI"
+		HasSystemDecorations="false"
+		Width="600"
+		Height="600">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainWindowViewModel/> 
+	</Design.DataContext>
+	<Panel>
+		<StackPanel Orientation="Horizontal" IsVisible="{Binding !IsQrCodeVisible}">
+			<StackPanel>
+				<Button Width="200" Height="200" Command="{Binding SendChoice}" CommandParameter="0" >
+					<Panel VerticalAlignment="Center" HorizontalAlignment="Center">
+						<StackPanel>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28">Pepsi</TextBlock>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">10 SEK</TextBlock>
+						</StackPanel>
+					</Panel>
+				</Button>
+				<Button Width="200" Height="200" Command="{Binding SendChoice}" CommandParameter="1">
+					<Panel VerticalAlignment="Center" HorizontalAlignment="Center">
+						<StackPanel>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28">Protien Bar</TextBlock>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">20 SEK</TextBlock>
+						</StackPanel>
+					</Panel>
+				</Button>
+				<Button Width="200" Height="200" Command="{Binding SendChoice}" CommandParameter="2">
+					<Panel VerticalAlignment="Center" HorizontalAlignment="Center">
+						<StackPanel>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28">Chips</TextBlock>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">30 SEK</TextBlock>
+						</StackPanel>
+					</Panel>
+				</Button>
+			</StackPanel>
+			<StackPanel>
+				<Button Width="200" Height="200" Command="{Binding SendChoice}" CommandParameter="3">
+					<Panel VerticalAlignment="Center" HorizontalAlignment="Center">
+						<StackPanel>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28">Pepsi Max</TextBlock>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">10 SEK</TextBlock>
+						</StackPanel>
+					</Panel>
+				</Button>
+				<Button Width="200" Height="200" Command="{Binding SendChoice}" CommandParameter="4">
+					<Panel VerticalAlignment="Center" HorizontalAlignment="Center">
+						<StackPanel>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28">Twix</TextBlock>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">15 SEK</TextBlock>
+						</StackPanel>
+					</Panel>
+				</Button>
+				<Button Width="200" Height="200" Command="{Binding SendChoice}" CommandParameter="5">
+					<Panel VerticalAlignment="Center" HorizontalAlignment="Center">
+						<StackPanel>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28">Wasa</TextBlock>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">15 SEK</TextBlock>
+						</StackPanel>
+					</Panel>
+				</Button>
+			</StackPanel>
+			<StackPanel>
+				<Button Width="200" Height="200" Command="{Binding SendChoice}" CommandParameter="6">
+					<Panel VerticalAlignment="Center" HorizontalAlignment="Center" >
+						<StackPanel>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28">Water</TextBlock>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">10 SEK</TextBlock>
+						</StackPanel>
+					</Panel>
+				</Button>
+				<Button Width="200" Height="200" Command="{Binding SendChoice}" CommandParameter="7">
+					<Panel VerticalAlignment="Center" HorizontalAlignment="Center">
+						<StackPanel>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28">Snickers</TextBlock>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">15 SEK</TextBlock>
+						</StackPanel>
+					</Panel>
+				</Button>
+				<Button Width="200" Height="200" Command="{Binding SendChoice}" CommandParameter="8">
+					<Panel VerticalAlignment="Center" HorizontalAlignment="Center">
+						<StackPanel>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28">Peanuts</TextBlock>
+							<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">20 SEK</TextBlock>
+						</StackPanel>
+					</Panel>
+				</Button>
+			</StackPanel>
+		</StackPanel>
+		<Grid IsVisible="{Binding IsQrCodeVisible}">
+			<Image 
+				Source="{Binding Qr}"/>
+		</Grid>
+	</Panel>
+</Window>

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwishVending.SwishRequest", "SwishVending.SwishRequest\SwishVending.SwishRequest.csproj", "{A4435CCF-DE15-4E8A-9B7F-104C2C92CDE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwishVending.MachineUI", "SwishVending.MachineUI\SwishVending.MachineUI.csproj", "{BE359207-0EEC-434D-8742-2A1AFAC23DB7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwishVending.MachineUI", "SwishVending.MachineUI\SwishVending.MachineUI.csproj", "{4FF01A22-E623-45DE-A2BA-BC8F614C747A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{A4435CCF-DE15-4E8A-9B7F-104C2C92CDE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4435CCF-DE15-4E8A-9B7F-104C2C92CDE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4435CCF-DE15-4E8A-9B7F-104C2C92CDE9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE359207-0EEC-434D-8742-2A1AFAC23DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE359207-0EEC-434D-8742-2A1AFAC23DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE359207-0EEC-434D-8742-2A1AFAC23DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE359207-0EEC-434D-8742-2A1AFAC23DB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FF01A22-E623-45DE-A2BA-BC8F614C747A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FF01A22-E623-45DE-A2BA-BC8F614C747A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FF01A22-E623-45DE-A2BA-BC8F614C747A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FF01A22-E623-45DE-A2BA-BC8F614C747A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

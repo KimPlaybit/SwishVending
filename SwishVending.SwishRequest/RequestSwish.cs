@@ -26,7 +26,7 @@ namespace SwishVending.SwishRequest
             var data = JsonConvert.DeserializeObject<SwishTransactionRequest>(requestBody);
 
             //Map Object for Swish payer Request
-            var paymentRequest = new SwishPaymentRequest("+46733507354", data.Price, "SEK", "", data.Message);
+            var paymentRequest = new SwishPaymentRequest("+46733507354", 100, "SEK", "", data.Message);
             //Send paymentRequest to Swish
             var token = SendSwishPaymentRequest(paymentRequest);
 
