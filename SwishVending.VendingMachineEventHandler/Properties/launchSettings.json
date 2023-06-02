@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "VendingMachineEventHandler": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7084",
+      "launchBrowser": false
+    }
+  }
+}
