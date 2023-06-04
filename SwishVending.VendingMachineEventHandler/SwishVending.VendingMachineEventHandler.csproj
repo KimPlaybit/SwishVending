@@ -12,6 +12,9 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.10.0" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="engine-control.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

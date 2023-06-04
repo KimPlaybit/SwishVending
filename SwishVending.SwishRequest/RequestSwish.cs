@@ -6,7 +6,6 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System.Net.Http;
 using System.IO;
 
 namespace SwishVending.SwishRequest
@@ -24,25 +23,27 @@ namespace SwishVending.SwishRequest
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             var data = JsonConvert.DeserializeObject<SwishTransactionRequest>(requestBody);
+            var swishIntegration = new SwishIntegration();
 
             //Map Object for Swish payer Request
-            var paymentRequest = new SwishPaymentRequest("+46733507354", 100, "SEK", "", data.Message);
+            var paymentRequest = new SwishPaymentRequest("+46733507354", 100, "SEK", "MISSING_URL", data.Message) { PayeePaymentReference = "MISSING_REFERENCE" };
             //Send paymentRequest to Swish
-            var token = SendSwishPaymentRequest(paymentRequest);
+            var token = await swishIntegration.CreatePaymentRequestAsync(paymentRequest);
 
             //Map Token from Swish 
             var commerceRequest = new SwishCommerceRequest(token.Token, "jpg", 300);
-
             //Send to /api/v1/commerce
-            var qr = GetQRCode(commerceRequest);
+            var qr = await swishIntegration.GetQrCodeAsync(commerceRequest);
 
-            return new OkObjectResult(qr.ArrayBuffer);
+            return new OkObjectResult(qr);
         }
 
-        private static SwishPaymentResponse SendSwishPaymentRequest(SwishPaymentRequest request)
+        private static async Task<SwishPaymentResponse> SendSwishPaymentRequest(SwishPaymentRequest request)
         {
             return new SwishPaymentResponse { Token = Guid.NewGuid().ToString() };
         }
+
+
 
         private static SwishCommerceResponse GetQRCode(SwishCommerceRequest request)
         {
