@@ -13,12 +13,11 @@ namespace SwishVending.VendingMachineEventHandler
         public MachinePaymentUpdate(ILoggerFactory loggerFactory)
         {
             logger = loggerFactory.CreateLogger<MachinePaymentUpdate>();
-            pythonExecution = new PythonExecution();
-            pythonExecution.ExecutePythonProgram("1");
+            this.pythonExecution = new PythonExecution();
         }
 
         [Function("MachinePaymentUpdate")]
-        public void Run([ServiceBusTrigger("machine-payment-update", Connection = "")] string myQueueItem)
+        public void Run([ServiceBusTrigger("machine-payment-update", Connection = "ServiceBusConnectionString")] string myQueueItem)
         {
             logger.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
             pythonExecution.ExecutePythonProgram(myQueueItem);
@@ -60,9 +59,6 @@ namespace SwishVending.VendingMachineEventHandler
                 // Display the output and error messages
                 Console.WriteLine("Output:");
                 Console.WriteLine(output);
-
-                Console.WriteLine("Error:");
-                Console.WriteLine(error);
             }
             catch (Exception ex)
             {
