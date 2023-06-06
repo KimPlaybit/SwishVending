@@ -9,8 +9,8 @@ namespace SwishVending.SwishCallback
 {
     public class SwishCallback
     {
-        private const string ServiceBusConnectionString = "<your-service-bus-connection-string>";
-        private const string ServiceBusQueueName = "<your-service-bus-queue-name>";
+        private readonly string serviceBusConnectionString = Environment.GetEnvironmentVariable("ServiceBusConnectionString") ?? throw new ArgumentNullException();
+        private readonly string serviceBusQueueName = "machine-payment-update";
 
         private const string SecretKey = "<your-secret-key>";
 
@@ -28,7 +28,7 @@ namespace SwishVending.SwishCallback
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
             // Verify the request signature
-            if (!req.Headers.TryGetValues("X-Swish-Signature", out var values) || !VerifySignature(requestBody, values.First()))
+            if (!req.Headers.TryGetValues("x-swish-signature", out var values) || !VerifySignature(requestBody, values.First()))
             {
                 logger.LogWarning("Invalid Swish callback signature");
                 return req.CreateResponse(HttpStatusCode.Unauthorized);
@@ -51,10 +51,10 @@ namespace SwishVending.SwishCallback
             return string.Equals(signature, computedSignature, StringComparison.OrdinalIgnoreCase);
         }
 
-        private static async Task SendSwishResponseToServiceBus(string requestBody)
+        private async Task SendSwishResponseToServiceBus(string requestBody)
         {
-            await using var client = new ServiceBusClient(ServiceBusConnectionString);
-            var sender = client.CreateSender(ServiceBusQueueName);
+            await using var client = new ServiceBusClient(serviceBusConnectionString);
+            var sender = client.CreateSender(serviceBusQueueName);
             await sender.SendMessageAsync(new ServiceBusMessage(Encoding.UTF8.GetBytes(requestBody)));
             
         }
